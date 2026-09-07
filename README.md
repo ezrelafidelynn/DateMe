@@ -15,7 +15,7 @@ realtime engine (MERN + Socket.io + Tailwind + daisyUI).
 | --- | --- |
 | **Profiles** | Hand-drawn avatar on a `<canvas>`, "Draw to Answer" visual icebreakers ("Doodle your comfort food", "Draw our first date"), six customizable **notebook themes** (Grid Paper, Blueprint, Vintage Parchment, Chalkboard, Watercolour, Pastel Manga). |
 | **Matching** | Swipe right = drop a hand-drawn **ink stamp** (heart / smiley / wax-seal / star). Attach a **5-stroke / 10-second sketch opener** instead of "Hey". **Blind sketch reveal**: real photos start fully blurred and un-blur as two people exchange messages and mutual drawings. |
-| **Chat** | Text, freehand **sketch messages**, self-drawn **custom sticker packs** (saved to your account), **voice doodles** (a voice note whose scribble replays in sync), a real-time **collaborative whiteboard**, and typing indicators. |
+| **Chat** | Text, **photo uploads** (downscaled client-side), freehand **sketch messages**, self-drawn **custom sticker packs** (saved to your account), **voice doodles** (a voice note whose scribble replays in sync), a real-time **collaborative whiteboard**, and typing indicators. |
 | **Mini-games** | **Guess the Doodle** (60s Pictionary with live strokes), **Exquisite Corpse** (draw half each, folded), **Tic-Tac-Toe**, **Hangman** — all peer-to-peer over the socket, results posted to the thread. |
 | **Safety** | Pluggable **sketch moderation** before delivery, one-tap **report / block / unmatch**, and **blur-first** delivery of drawings from brand-new matches (tap to reveal). |
 
@@ -50,7 +50,11 @@ normalised to `0..1` so a drawing replays at any size:
 ### 1. Requirements
 
 - Node 18+
-- A MongoDB connection string (local `mongod`, or a free MongoDB Atlas cluster)
+- **No database install needed.** If `MONGODB_URI` is unset, the backend starts
+  an in-process `mongodb-memory-server` (it downloads a MongoDB binary once,
+  ~600 MB, cached afterwards). That data is **ephemeral** — it lives only while
+  the server process runs. Set `MONGODB_URI` (local `mongod` or a free Atlas
+  cluster) for persistent data and for `npm run seed` to stick.
 
 ### 2. Configure
 
