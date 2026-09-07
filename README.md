@@ -7,6 +7,13 @@ stamp, and once you match your chat is a shared sketchpad with mini-games.
 Built by expanding the [EzChat](https://github.com/ezrelafidelynn/EzChat)
 realtime engine (MERN + Socket.io + Tailwind + daisyUI).
 
+## Demo
+
+![EzMatch demo](docs/demo.gif)
+
+*Login → stamp with a 5-stroke opener → "It's a Match!" → send a hand-drawn
+sketch → shared whiteboard → mini-games → matches list → notebook themes.*
+
 ---
 
 ## The idea
