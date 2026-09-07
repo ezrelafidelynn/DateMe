@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: theme("fontFamily.sans");
+}
+
+/* ------------------------------------------------------------------ *
+ *  Notebook paper textures — pure CSS, one per theme.
+ *  Applied to the app shell (.paper) so every screen sits on paper.
+ * ------------------------------------------------------------------ */
+.paper {
+  background-color: hsl(var(--b2));
+  background-attachment: fixed;
+}
+
+[data-theme="grid-paper"] .paper {
+  background-image:
+    linear-gradient(rgba(52, 87, 213, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 87, 213, 0.12) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+[data-theme="blueprint"] .paper {
+  background-color: #0c3357;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+}
+
+[data-theme="parchment"] .paper {
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(120, 80, 40, 0.14), transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(90, 60, 30, 0.12), transparent 55%),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(120, 80, 40, 0.07) 27px 28px);
+}
+
+[data-theme="chalkboard"] .paper {
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.05), transparent 40%),
+    radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.04), transparent 45%);
+}
+
+[data-theme="watercolor"] .paper {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(154, 134, 212, 0.18), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(111, 195, 192, 0.18), transparent 45%),
+    radial-gradient(circle at 60% 85%, rgba(240, 163, 144, 0.18), transparent 45%);
+}
+
+[data-theme="manga"] .paper {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1px, transparent 1.6px);
+  background-size: 8px 8px;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Hand-drawn flourishes
+ * ------------------------------------------------------------------ */
+.font-hand {
+  font-family: theme("fontFamily.hand");
+}
+.font-script {
+  font-family: theme("fontFamily.script");
+}
+
+/* wobbly ink border */
+.ink-border {
+  border: 2px solid hsl(var(--bc) / 0.75);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+.ink-border-sm {
+  border: 2px solid hsl(var(--bc) / 0.7);
+  border-radius: 18px 12px 20px 10px / 10px 20px 12px 18px;
+}
+
+.paper-card {
+  background: hsl(var(--b1));
+  border: 2px solid hsl(var(--bc) / 0.14);
+  box-shadow: theme("boxShadow.sketch");
+}
+
+.tape {
+  position: absolute;
+  width: 74px;
+  height: 22px;
+  background: hsl(var(--wa) / 0.35);
+  border: 1px solid hsl(var(--bc) / 0.12);
+  transform: rotate(-4deg);
+}
+
+/* let the drawing surface own the cursor */
+.canvas-surface {
+  touch-action: none;
+  cursor: crosshair;
+}
+
+@keyframes stamp-in {
+  0% { transform: scale(2.4) rotate(-18deg); opacity: 0; }
+  60% { transform: scale(0.9) rotate(-8deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-8deg); opacity: 1; }
+}
+.animate-stamp {
+  animation: stamp-in 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+@keyframes float-in {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-float-in {
+  animation: float-in 0.3s ease both;
+}
