@@ -25,7 +25,10 @@ export default function MessageBubble({ message, mine, onReveal }) {
         {message.type === "text" && <p className="whitespace-pre-wrap break-words">{message.text}</p>}
 
         {message.type === "image" && (
-          <img src={message.image} alt="" className="max-w-[220px] rounded-lg" />
+          <div className="space-y-1">
+            <img src={message.image} alt="" className="max-w-[220px] rounded-lg" />
+            {message.text && <p className="whitespace-pre-wrap break-words text-sm">{message.text}</p>}
+          </div>
         )}
 
         {(message.type === "sketch" || message.type === "voice-doodle") && (

@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
 
-import { connectDB } from "./lib/db.js";
+import { connectDB, disconnectDB } from "./lib/db.js";
 import { app, server } from "./lib/socket.js";
 
 import authRoutes from "./routes/auth.route.js";
@@ -43,3 +43,10 @@ server.listen(PORT, () => {
   console.log("EzMatch server running on PORT: " + PORT);
   connectDB();
 });
+
+for (const sig of ["SIGINT", "SIGTERM"]) {
+  process.on(sig, async () => {
+    await disconnectDB();
+    process.exit(0);
+  });
+}
